@@ -1,0 +1,81 @@
+:root {
+  --spacing: 0.5rem;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  -webkit-font-smoothing: antialiased;
+  font-family: "Roboto Mono", monospace;
+  background-color: black;
+  color: white;
+}
+
+.clock {
+  display: flex;
+  align-items: center;
+  font-size: clamp(5rem, 8rem, 10vw);
+  font-weight: 700;
+  gap: 1.5rem;
+}
+
+.tick {
+  font-size: clamp(3rem, 6rem, 8vw);
+}
+
+#hours,
+#minutes,
+#seconds {
+  display: flex;
+}
+
+.group {
+  display: flex;
+  position: relative;
+}
+
+.group .front {
+  text-shadow: 0 0 10px black;
+  animation-duration: 0.5s;
+  animation-direction: alternate-reverse;
+  animation-iteration-count: 2;
+  animation-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.group .back {
+  position: absolute;
+  left: var(--spacing);
+  z-index: -1;
+  color: red;
+  animation-duration: 0.5s;
+  animation-direction: alternate;
+  animation-iteration-count: 2;
+  animation-timing-function: ease-in;
+}
+
+@keyframes bounceFront {
+  from {
+    transform: translateY(var(--spacing));
+  }
+
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes bounceBack {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(calc(var(--spacing) / 2));
+  }
+}
